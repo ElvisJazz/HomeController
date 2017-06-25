@@ -38,7 +38,7 @@ class MusicPlayer(object):
 			self._cur_music_list = self.music_lists[self._cur_music_index]
 
 		music_url = self._cur_music_list[self._cur_music_index]
-		subprocess.Popen('mocp')
+		subprocess.Popen('mocp', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		subprocess.Popen('mocp -l %s' % music_url)
 
 	def next_music(self):
