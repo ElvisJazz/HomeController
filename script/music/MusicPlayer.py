@@ -10,10 +10,8 @@ class MusicPlayer(object):
 
 	def __init__(self):
 		self._music_lists = self.load_music_list()
-		self._cur_music_index = 0
 		self._cur_music_list_index = 0
 		self._cur_music_list = None
-		self._cur_music = None
 		self._volume_delta = 5
 
 	@staticmethod
@@ -33,21 +31,20 @@ class MusicPlayer(object):
 		self._cur_music_index = index
 		self._cur_music_list = self.music_lists[index]
 
-	def play_music(self):
-		if self._cur_music_list is None:
-			self._cur_music_list = self.music_lists[self._cur_music_index]
-
-		music_url = self._cur_music_list[self._cur_music_index]
 		subprocess.Popen(['mocp'])
-		subprocess.Popen(['mocp', '-l', '%s' % music_url])
+		subprocess.Popen(['mocp', '-c'])
+		cmd = ['mocp', '-a']
+		cmd.extend([music for music in self._cur_music_list])
+		subprocess.Popen(cmd)
+
+	def play_music(self):
+		subprocess.Popen(['mocp', '-p'])
 
 	def next_music(self):
-		self._cur_music_index = (self._cur_music_index + 1) % len(self._cur_music_list)
-		self.play_music()
+		subprocess.Popen(['mocp', '-f'])
 
 	def pre_music(self):
-		self._cur_music_index = (self._cur_music_index - 1) % len(self._cur_music_list)
-		self.play_music()
+		subprocess.Popen(['mocp', '-r'])
 
 	def pause_music(self):
 		subprocess.Popen(['mocp', '-P'])
