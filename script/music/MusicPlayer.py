@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import commands
+import subprocess
 from music.MusicLoader import MusicLoader
 
 __author__ = 'ElvisJia'
@@ -38,8 +38,8 @@ class MusicPlayer(object):
 			self._cur_music_list = self.music_lists[self._cur_music_index]
 
 		music_url = self._cur_music_list[self._cur_music_index]
-		commands.getstatusoutput('mocp')
-		commands.getstatusoutput('mocp -l %s' % music_url)
+		subprocess.Popen('mocp')
+		subprocess.Popen('mocp -l %s' % music_url)
 
 	def next_music(self):
 		self._cur_music_index = (self._cur_music_index + 1) % len(self._cur_music_list)
@@ -50,16 +50,16 @@ class MusicPlayer(object):
 		self.play_music()
 
 	def pause_music(self):
-		commands.getstatusoutput('mocp -P')
+		subprocess.Popen('mocp -P')
 
 	def resume_music(self):
-		commands.getstatusoutput('mocp -U')
+		subprocess.Popen('mocp -U')
 
 	def stop_music(self):
-		commands.getstatusoutputn('mocp -s')
+		subprocess.Popen('mocp -s')
 
 	def volume_up(self):
-		commands.getstatusoutput('mocp -v %d' % self._volume_delta)
+		subprocess.Popen('mocp -v %d' % self._volume_delta)
 
 	def volume_down(self):
-		commands.getstatusoutput('mocp -v %d' % -self._volume_delta)
+		subprocess.Popen('mocp -v %d' % -self._volume_delta)
