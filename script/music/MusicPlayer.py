@@ -39,7 +39,7 @@ class MusicPlayer(object):
 
 		music_url = self._cur_music_list[self._cur_music_index]
 		os.system('mocp')
-		os.system('mocp -p %s' % music_url)
+		os.system('mocp -l %s' % music_url)
 
 	def next_music(self):
 		self._cur_music_index = (self._cur_music_index + 1) % len(self._cur_music_list)

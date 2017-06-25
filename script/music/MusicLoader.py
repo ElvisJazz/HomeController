@@ -11,7 +11,7 @@ class MusicLoader(object):
 	@staticmethod
 	def load_music_lists(music_path):
 		music_list_dir = os.listdir(music_path)
-		return [MusicLoader.list_all_files(music_list) for music_list in music_list_dir if isdir(music_list)]
+		return [MusicLoader.list_all_files(join(music_path, music_list)) for music_list in music_list_dir if isdir(join(music_path, music_list))]
 
 	@staticmethod
 	def list_all_files(path):
