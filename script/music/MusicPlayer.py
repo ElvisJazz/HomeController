@@ -9,7 +9,7 @@ class MusicPlayer(object):
 	music_path = '/home/pi/Music'
 
 	def __init__(self):
-		self._music_lists = self.load_music_list(MusicPlayer.music_path)
+		self._music_lists = self.load_music_list()
 		self._cur_music_index = 0
 		self._cur_music_list_index = 0
 		self._cur_music_list = None
@@ -23,7 +23,7 @@ class MusicPlayer(object):
 	@property
 	def music_lists(self):
 		if not self._music_lists:
-			self._music_lists = self.load_music_list(MusicPlayer.music_path)
+			self._music_lists = self.load_music_list()
 		return self._music_lists
 
 	def sel_music_list(self, index):
