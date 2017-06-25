@@ -38,8 +38,8 @@ class MusicPlayer(object):
 			self._cur_music_list = self.music_lists[self._cur_music_index]
 
 		music_url = self._cur_music_list[self._cur_music_index]
-		os.system('mocp')
-		os.system('mocp -l %s' % music_url)
+		os.popen('mocp')
+		os.popen('mocp -l %s' % music_url)
 
 	def next_music(self):
 		self._cur_music_index = (self._cur_music_index + 1) % len(self._cur_music_list)
@@ -50,16 +50,16 @@ class MusicPlayer(object):
 		self.play_music()
 
 	def pause_music(self):
-		os.system('mocp -P')
+		os.popen('mocp -P')
 
 	def resume_music(self):
-		os.system('mocp -U')
+		os.popen('mocp -U')
 
 	def stop_music(self):
-		os.system('mocp -s')
+		os.popen('mocp -s')
 
 	def volume_up(self):
-		os.system('mocp -v %d' % self._volume_delta)
+		os.popen('mocp -v %d' % self._volume_delta)
 
 	def volume_down(self):
-		os.system('mocp -v %d' % -self._volume_delta)
+		os.popen('mocp -v %d' % -self._volume_delta)
